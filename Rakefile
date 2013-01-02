@@ -62,8 +62,9 @@ task :assign_ids do
 
   # Doing this so we don't raise on the very exception we want to fix...
   require 'json'
-  require './lib/money/currency_loader'
-  currencies = CurrencyLoader.load_currencies(true)
+  require './lib/money/currency'
+  require './lib/money/currency/loader'
+  currencies = Money::Currency::Loader.load_currencies(true)
 
   require 'json_builder'
 
