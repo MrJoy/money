@@ -2,9 +2,7 @@
 
 ## Contributing
 
-When contributing, please make sure to update the CHANGELOG and AUTHORS files
-when you submit your pull request. Upon merging of your first pull request,
-you will be given commit access to the repository.
+See the [Contribution Guidelines](https://github.com/RubyMoney/money/blob/master/CONTRIBUTING.md)
 
 ## Introduction
 
@@ -26,7 +24,9 @@ This library aids one in handling money and different currencies.
 
 ### Resources
 
-- [Git Repository](http://github.com/MrJoy/money)
+- [Website](http://rubymoney.github.com/money)
+- [API Documentation](http://rubydoc.info/gems/money/frames)
+- [Git Repository](http://github.com/RubyMoney/money)
 
 ### Notes
 
@@ -43,7 +43,7 @@ Install stable releases with the following command:
 
 The development version (hosted on Github) can be installed with:
 
-    git clone git://github.com/MrJoy/money.git
+    git clone git://github.com/RubyMoney/money.git
     cd money
     rake install
 
@@ -229,28 +229,6 @@ implementations.
 
 ## Ruby on Rails
 
-To integrate money in a Rails application use [money-rails](http://github.com/RubyMoney/money-rails)
-gem or follow the instructions below.
+To integrate money in a Rails application use [money-rails](http://github.com/RubyMoney/money-rails).
 
-Define accessor methods to let Active Record deal with embedding the money
-object in your models. The following example requires 2 columns:
-
-``` ruby
-:price_cents, :integer, :default => 0, :null => false
-:price_currency, :string
-```
-
-Then in your model file:
-
-``` ruby
-def price
-  Money.new price_cents || 0, price_currency || Money.default_currency
-end
-
-def price=(value)
-  Money.parse(value).tap do |price|
-    write_attribute :price_cents,    price.cents
-    write_attribute :price_currency, price.currency_as_string
-  end
-end
-```
+For depreceated methods of integrating with Rails, check [the wiki](https://github.com/RubyMoney/money/wiki).
